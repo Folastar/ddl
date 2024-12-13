@@ -1,0 +1,55 @@
+To address your checkpoint, I'll provide the SQL commands to create the tables based on the relational model provided in the images, and then I'll provide the SQL commands to add the specified columns to the tables.
+
+### SQL to Create Tables (Based on the Given Relational Model)
+
+#### 1. **Creating the PRODUCT table**
+
+```sql
+CREATE TABLE PRODUCT (
+    Product_id NUMBER PRIMARY KEY,
+    Product_name VARCHAR2(50),
+    Price NUMBER(6, 2),
+    Quantity NUMBER,
+    Category VARCHAR2(20)
+);
+```
+
+#### 2. **Creating the ORDERS table**
+
+```sql
+CREATE TABLE ORDERS (
+    Order_id NUMBER PRIMARY KEY,
+    Order_date DATE,
+    Product_id NUMBER,
+    Quantity NUMBER,
+    CONSTRAINT fk_Product FOREIGN KEY (Product_id) REFERENCES PRODUCT(Product_id)
+);
+```
+
+---
+
+### SQL to Add Columns
+
+#### 1. **Add a column `Category` (VARCHAR2(20)) to the PRODUCT table**
+
+```sql
+ALTER TABLE PRODUCT ADD Category VARCHAR2(20);
+```
+
+#### 2. **Add a column `OrderDate` (DATE) to the ORDERS table with SYSDATE as the default value**
+
+```sql
+ALTER TABLE ORDERS ADD OrderDate DATE DEFAULT SYSDATE;
+```
+
+---
+
+### Summary:
+- **PRODUCT table** includes columns for `Product_id`, `Product_name`, `Price`, `Quantity`, and `Category`.
+- **ORDERS table** includes columns for `Order_id`, `Order_date`, `Product_id`, `Quantity`, and a foreign key to the `PRODUCT` table.
+
+Additionally:
+- The **`Category`** column is added to **PRODUCT** with the specified type `VARCHAR2(20)`.
+- The **`OrderDate`** column is added to **ORDERS** with a default value of the current system date (`SYSDATE`).
+
+Let me know if you need further assistance!
